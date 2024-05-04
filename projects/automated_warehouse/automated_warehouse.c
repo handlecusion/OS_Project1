@@ -67,6 +67,7 @@ void run_automated_warehouse(char **argv)
         for (int i=0; i<robot_num; i++)
         {
                 fprintf(_robotname, "R%d", i+1);
+                printf("%s\n", _robotname);
                 setRobot(&robots[i], _robotname, 5, 5, 1, 0);
         }
 
