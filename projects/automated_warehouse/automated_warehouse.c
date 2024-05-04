@@ -63,7 +63,9 @@ void run_automated_warehouse(char **argv)
         robot_num = atoi(argv[1]);
         char _robotname[10];
 
-        robots = malloc(sizeof(struct robot) * atoi(robot_num));
+        printf("%s %d\n", argv[1], robot_num);
+
+        robots = malloc(sizeof(struct robot) * robot_num);
         for (int i=0; i<robot_num; i++)
         {
                 fprintf(_robotname, "R%d", i+1);
