@@ -38,9 +38,9 @@ void unblock_threads(){
     enum intr_level old_level;
 
     old_level = intr_disable();
-    while (!list_empty(&block_thread))
+    while (!list_empty(&blocked_threads))
     {
-        thread_unblock(list_pop_front(&block_thread));
+        thread_unblock(list_pop_front(&blocked_threads));
     }
     intr_set_level(old_level);
     // you must implement this
