@@ -10,7 +10,7 @@
 
 #include "projects/automated_warehouse/aw_manager.h"
 
-#include "aw_message.h"
+#include "projects/automated_warehouse/aw_message.h"
 
 struct robot* robots;
 int robot_num;
