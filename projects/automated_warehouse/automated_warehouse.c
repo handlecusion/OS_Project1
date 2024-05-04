@@ -18,10 +18,10 @@ int robot_num;
 // test code for central control node thread
 void test_cnt(){
         boxes_from_central_control_node = malloc(sizeof(struct messsage_box) * robot_num);
-        boxes_from_robots = malloc(sizeof(struct message_box) * robot_num);
+        boxes_from_robots = malloc(sizeof(struct messsage_box) * robot_num);
 
         while(1){
-                if(check_block_message())
+                //if(check_block_message())
                 print_map(robots, 4);
                 thread_sleep(1000);
                 block_thread();
@@ -42,7 +42,26 @@ void test_thread(void* aux){
 void cnt_thread(char *misson)
 {
         while(1)
+        {
+                boxes_from_central_control_node = malloc(sizeof(struct messsage_box) * robot_num);
+                boxes_from_robots = malloc(sizeof(struct messsage_box) * robot_num);
+
+                while(1){
+                        //if(check_block_message())
+                        print_map(robots, robot_num);
+                        thread_sleep(1000);
+                        block_thread();
+                }
+        }
         
+}
+
+void robot_thread()
+{
+        while(1){
+                printf("thread\n");
+                thread_sleep(1000);
+        }
 }
 
 // entry point of simulator
@@ -90,7 +109,7 @@ void run_automated_warehouse(char **argv)
         for (int i=1; i<robot_num+1; i++)
         {
                 fprintf(_robotname, "R%d", i);
-                threads[i] = thread_create(_robotname, i, &robot_thread, command);
+                threads[i] = thread_create(_robotname, i, &robot_thread, NULL);
         }
 
         // if you want, you can use main thread as a central control node
